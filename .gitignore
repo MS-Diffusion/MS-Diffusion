@@ -1,0 +1,9 @@
+/.idea/
+
+# outputs
+/logs/
+/output/
+/res/
+
+# compiled files
+__pycache__/
