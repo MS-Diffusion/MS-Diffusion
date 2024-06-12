@@ -3,7 +3,7 @@
 <div align="center">
 
   <a href="https://MS-Diffusion.github.io"><img src="https://img.shields.io/static/v1?label=Project%20Page&message=GitHub&color=blue&logo=github"></a> &ensp;
-  <a href="https://arxiv.org/abs/2402.05195"><img src="https://img.shields.io/static/v1?label=ArXiv&message=2402.05195&color=B31B1B&logo=arxiv"></a> &ensp;
+  <a href="https://arxiv.org/abs/2406.07209"><img src="https://img.shields.io/static/v1?label=ArXiv&message=2406.07209&color=B31B1B&logo=arxiv"></a> &ensp;
   <a href="https://huggingface.co/doge1516/MS-Diffusion"><img src="https://img.shields.io/static/v1?label=Model Weights&message=HuggingFace&color=yellow"></a> &ensp;
 
 </div>
@@ -105,4 +105,12 @@ This repository is built based on the fancy, robust, and extensible work of [IP-
 If you find this work helpful, please consider citing:
 
 ```bibtex
+@misc{wang2024msdiffusion,
+  title={MS-Diffusion: Multi-subject Zero-shot Image Personalization with Layout Guidance}, 
+  author={X. Wang and Siming Fu and Qihan Huang and Wanggui He and Hao Jiang},
+  year={2024},
+  eprint={2406.07209},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV}
+}
 ```
