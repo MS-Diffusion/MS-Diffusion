@@ -27,7 +27,7 @@ MS-Diffusion introduces two pivotal enhancements to the model: the grounding res
 ### Setup
 
 ```bash
-git clone
+git clone git@github.com:MS-Diffusion/MS-Diffusion.git
 cd msdiffusion
 pip install -r requirements.txt
 ```
