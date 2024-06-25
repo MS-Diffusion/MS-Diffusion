@@ -105,12 +105,10 @@ This repository is built based on the fancy, robust, and extensible work of [IP-
 If you find this work helpful, please consider citing:
 
 ```bibtex
-@misc{wang2024msdiffusion,
-  title={MS-Diffusion: Multi-subject Zero-shot Image Personalization with Layout Guidance}, 
-  author={X. Wang and Siming Fu and Qihan Huang and Wanggui He and Hao Jiang},
-  year={2024},
-  eprint={2406.07209},
-  archivePrefix={arXiv},
-  primaryClass={cs.CV}
+@article{wang2024ms,
+  title={MS-Diffusion: Multi-subject Zero-shot Image Personalization with Layout Guidance},
+  author={Wang, X and Fu, Siming and Huang, Qihan and He, Wanggui and Jiang, Hao},
+  journal={arXiv preprint arXiv:2406.07209},
+  year={2024}
 }
 ```
