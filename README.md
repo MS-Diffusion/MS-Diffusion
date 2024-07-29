@@ -22,6 +22,10 @@ MS-Diffusion introduces two pivotal enhancements to the model: the grounding res
 
 ![model](imgs/overall.png)
 
+## Community Resources
+
+Thanks to [smthemex](https://github.com/smthemex) for providing a [ComfyUI Version](https://github.com/smthemex/ComfyUI_MS_Diffusion).
+
 ## Getting Started
 
 ### Setup
