@@ -12,9 +12,9 @@
 
 ## News
 
-MS-Diffusion is accepted by **ICLR 2025**! We are working on updating the paper and training code...
+:sunglasses: [2025.02.07] **MS-Diffusion is accepted by ICLR 2025!** We are working on updating the paper and training code...
 
-Our follow-up work MIP-Adapter is available at https://github.com/hqhQAQ/MIP-Adapter.
+:mag_right: [2025.02.07] Our follow-up work MIP-Adapter is available at https://github.com/hqhQAQ/MIP-Adapter.
 
 ## Overview
 
