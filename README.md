@@ -12,7 +12,7 @@
 
 ## News
 
-:sunglasses: [2025.02.07] **MS-Diffusion is accepted by ICLR 2025!** We are working on updating the paper and training code...
+:sunglasses: [2025.02.12] **MS-Diffusion is accepted by ICLR 2025!** We have updated the paper and training code.
 
 :mag_right: [2025.02.07] Our follow-up work MIP-Adapter is available at https://github.com/hqhQAQ/MIP-Adapter.
 
@@ -64,6 +64,18 @@ If you want to inference with controlnets, please set up your controlnet models 
 python inference_controlnet.py
 ```
 
+### Train
+
+Before training, you can prepare your dataset in `./msdiffusion/dataset/datagenerator.py`. We have provided an example of the data reading.
+
+The training configs are in `./config.py`. You can modify the configs to fit your needs.
+
+Modify and run the script to start training:
+
+```bash
+sh scripts/train.sh 1
+```
+
 ## Benchmark
 
 We provide the proposed MS-Bench in `./msbench`. The prompt template is in `./msdiffusion/dataset/prompts/msbench.py`.
@@ -77,7 +89,7 @@ Details can be found in the paper.
 - [x] paper
 - [x] inference code
 - [x] model weights
-- [ ] training code
+- [x] training code
 
 ## New Features
 
@@ -115,10 +127,12 @@ This repository is built based on the fancy, robust, and extensible work of [IP-
 If you find this work helpful, please consider citing:
 
 ```bibtex
-@article{wang2024ms,
-  title={MS-Diffusion: Multi-subject Zero-shot Image Personalization with Layout Guidance},
-  author={Wang, X and Fu, Siming and Huang, Qihan and He, Wanggui and Jiang, Hao},
-  journal={arXiv preprint arXiv:2406.07209},
-  year={2024}
+@inproceedings{
+  wang2025msdiffusion,
+  title={{MS}-Diffusion: Multi-subject Zero-shot Image Personalization with Layout Guidance},
+  author={Xierui Wang and Siming Fu and Qihan Huang and Wanggui He and Hao Jiang},
+  booktitle={The Thirteenth International Conference on Learning Representations},
+  year={2025},
+  url={https://openreview.net/forum?id=PJqP0wyQek}
 }
 ```

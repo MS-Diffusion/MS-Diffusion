@@ -35,6 +35,45 @@ class MSAdapter(torch.nn.Module):
         if ckpt_path is not None:
             self.load_from_checkpoint(ckpt_path)
 
+    def forward(self, noisy_latents, timesteps, encoder_hidden_states, unet_added_cond_kwargs, image_embeds,
+                rf_attention_mask=None, cross_attention_kwargs=None, grounding_kwargs=None):
+        bsz = encoder_hidden_states.shape[0]
+        if grounding_kwargs is None:
+            ip_tokens = self.image_proj_model(image_embeds)  # (bsz*rn, num_tokens, cross_attention_dim)
+        else:
+            ip_tokens = self.image_proj_model(image_embeds, grounding_kwargs=grounding_kwargs)
+        # concat multiple images tokens
+        ip_tokens = ip_tokens.view(bsz, -1, ip_tokens.shape[-2], ip_tokens.shape[-1])  # (bsz, rn, num_tokens, cross_attention_dim)
+        total_num_tokens = ip_tokens.shape[-2]  # num_tokens
+        ip_tokens = ip_tokens.view(bsz, ip_tokens.shape[-3] * ip_tokens.shape[-2], ip_tokens.shape[-1])  # (bsz, total_num_tokens*rn, cross_attention_dim)
+        dummy_image_tokens = self.dummy_image_tokens.repeat(bsz, 1, 1)
+        ip_tokens = torch.cat([dummy_image_tokens, ip_tokens], dim=1)
+        encoder_hidden_states = torch.cat([encoder_hidden_states, ip_tokens], dim=1)
+        encoder_attention_mask = None
+        if rf_attention_mask is not None:
+            attention_mask = torch.ones((bsz, self.text_tokens)).cuda()
+            rf_attention_mask = torch.repeat_interleave(rf_attention_mask, repeats=total_num_tokens, dim=1)
+            encoder_attention_mask = torch.cat([attention_mask, rf_attention_mask], dim=1)
+        # Predict the noise residual
+        noise_pred = self.unet(noisy_latents, timesteps, encoder_hidden_states,
+                               added_cond_kwargs=unet_added_cond_kwargs,
+                               encoder_attention_mask=encoder_attention_mask,
+                               cross_attention_kwargs=cross_attention_kwargs).sample
+        return noise_pred
+
+    def save_to_checkpoint(self, output_path: str):
+        if os.path.isdir(output_path):
+            os.makedirs(output_path, exist_ok=True)
+            output_path = os.path.join(output_path, "ms_adapter.bin")
+
+        state_dict = {
+            "image_proj": self.image_proj_model.state_dict(),
+            "ms_adapter": self.adapter_modules.state_dict(),
+            "dummy_image_tokens": self.dummy_image_tokens,
+        }
+        torch.save(state_dict, output_path)
+        print(f"Successfully saved weights to checkpoint {output_path}")
+
     def load_from_checkpoint(self, ckpt_path: str):
         if os.path.isdir(ckpt_path):
             ckpt_path = os.path.join(ckpt_path, "ms_adapter.bin")
