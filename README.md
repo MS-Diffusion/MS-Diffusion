@@ -78,6 +78,8 @@ sh scripts/train.sh 1
 
 ## Benchmark
 
+[**New**] Now MS-Bench is also available in [HuggingFace](https://huggingface.co/datasets/doge1516/MS-Bench).
+
 We provide the proposed MS-Bench in `./msbench`. The prompt template is in `./msdiffusion/dataset/prompts/msbench.py`.
 
 MS-Bench contains four data types and 13 combination types with two or three subjects. Each combination type other than those related to the scene has 6 prompt variations. There are 1148 combinations and 4488 evaluation samples, where entities and boxes are subject categories and preset layouts. Compared to other multi-subject benchmarks, our MS-Bench ensures that the model performance can be reflected comprehensively in abundant cases.
